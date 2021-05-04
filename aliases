@@ -1,0 +1,56 @@
+alias tg='terragrunt'
+alias tfu='terragrunt force-unlock'
+alias tgp='terragrunt plan --terragrunt-source-update'
+alias tga='terragrunt apply --terragrunt-source-update'
+alias tgaa='terragrunt apply-all --terragrunt-source-update'
+alias tgd='terragrunt destroy --terragrunt-source-update'
+alias tgda='terragrunt destroy-all --terragrunt-source-update'
+alias tgi='terragrunt import --terragrunt-source-update'
+alias tgr='terragrunt refresh --terragrunt-source-update'
+alias tgs='terragrunt show --terragrunt-source-update'
+alias tgsl='terragrunt state --terragrunt-source-update'
+alias tgss='terragrunt state show --terragrunt-source-update'
+alias gpgp="git pull && git push"
+alias gpu="git pull"
+alias gps="git push"
+alias gs="git status"
+alias gco="git checkout"
+alias gcm="git commit -m"
+alias cdws="cd /workspace"
+#
+alias forget_aws="unset AWS_ACCESS_KEY_ID AWS_SESSION_TOKEN AWS_SECRET_ACCESS_KEY AWS_SECURITY_TOKEN"
+#
+alias wipe_all_containers="docker ps -a |awk '{print $1}' |grep -v CONTAINER|xargs docker rm "
+#
+declare -a AWS_REGIONS=("af-south-1" \
+"ap-east-1" \
+"ap-northeast-1" \
+"ap-northeast-2" \
+"ap-northeast-3" \
+"ap-south-1" \
+"ap-southeast-1" \
+"ap-southeast-2" \
+"ca-central-1" \
+"cn-north-1" \
+"cn-northwest-1" \
+"eu-central-1" \
+"eu-north-1" \
+"eu-south-1" \
+"eu-west-1" \
+"eu-west-2" \
+"eu-west-3" \
+"me-south-1" \
+"sa-east-1" \
+"us-east-1" \
+"us-east-2" \
+"us-gov-east-1" \
+"us-gov-west-1" \
+"us-west-1" \
+"us-west-2")
+
+for I in $AWS_REGIONS
+do 
+  alias $I="export AWS_REGION=$I ; export AWS_DEFAULT_REGION=$I ; export TF_VAR_aws_region=$I"
+done
+
+unset AWS_REGIONS
